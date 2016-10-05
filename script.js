@@ -138,5 +138,20 @@ angular.module('myApp', [])
 		}
 
 	}
+
+	$scope.calcularTempoFila = function() {
+		var soma = 0;
+		for (var i = 0; i < $scope.listaTotalEspera.length; i++) {
+			let item = $scope.listaTotalEspera[i]
+			soma += item.valor;
+		}
+		
+		for (var i = 0; i < $scope.listaValores.length; i++) {
+			let item = $scope.listaValores[i]
+			soma += item.valor;
+		}
+		return soma;
+	}
+
 	$scope.limpar()
 })

@@ -8,7 +8,7 @@
 </head>
 <body ng-controller="myController">
 	<input type="text" ng-model="quantum" placeholder="Quantum">
-	<input type="text" ng-model="valor" placeholder="Valor processso">
+	<input type="text" style="width: 300px" ng-model="valor" placeholder="Processsos separados por ponto e virgula(10;5;60)">
 	<button ng-click="limpar()">Limpar</button>
 	<button ng-click="clicar()">Calcular</button>
 
@@ -35,6 +35,7 @@
 	<div ng-repeat="processo in listaValores track by $index">
 		<span>P{{processo.id}}: {{processo.valor + obterTotal(processo.id)}}</span>
 	</div>
+	<span ng-if="calculado">Tempo total fila: {{calcularTempoFila()}}</span>
 
 	<ul>
 		<li ng-repeat="item in listaOrdem track by $index ">
