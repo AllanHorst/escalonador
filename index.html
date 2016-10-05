@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<script src="angular-1.5.6/angular.js"></script>
+	<script src="script.js"></script>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body ng-controller="myController">
+	<input type="text" ng-model="quantum" placeholder="Quantum">
+	<input type="text" ng-model="valor" placeholder="Valor processso">
+	<button ng-click="limpar()">Limpar</button>
+	<button ng-click="clicar()">Calcular</button>
+
+	<div ng-repeat="processo in listaValores track by $index">
+		<ul>
+			<span>P{{processo.id}} - Valor: {{processo.valor}} </span>
+			<li style="display: inline-block" 
+				ng-repeat="item in listaOrdem | filter: {id: processo.id} ">
+				<span>[{{item.cicloIni}} - </span>
+				<span>{{item.cicloFim}}: </span>
+				<span>{{item.valor}}]</span>
+			</li>
+			<span>: Tempo total de espera = {{obterTotal(processo.id)}}</span>
+		</ul>
+	</div>
+	
+	<br>
+
+	<span ng-if="calculado">Média de espera: {{calcularMedia() | number: 2}}</span>
+	
+	<br><br>
+
+	<span ng-if="calculado">Total(processamento + espera):</span> <br>
+	<div ng-repeat="processo in listaValores track by $index">
+		<span>P{{processo.id}}: {{processo.valor + obterTotal(processo.id)}}</span>
+	</div>
+
+	<ul>
+		<li ng-repeat="item in listaOrdem track by $index ">
+			<span>P{{item.id}}: </span>
+			<span>{{item.cicloIni}}</span>
+		</li>
+	</ul>
+</body>
+</html>
